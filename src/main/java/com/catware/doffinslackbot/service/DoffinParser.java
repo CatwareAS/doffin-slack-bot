@@ -1,6 +1,6 @@
 package com.catware.doffinslackbot.service;
 
-import com.catware.doffinslackbot.TenderDto;
+import com.catware.doffinslackbot.dto.TenderDto;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

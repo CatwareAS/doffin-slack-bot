@@ -1,6 +1,6 @@
 package com.catware.doffinslackbot.job;
 
-import com.catware.doffinslackbot.TenderDto;
+import com.catware.doffinslackbot.dto.TenderDto;
 import com.catware.doffinslackbot.dao.TendersDao;
 import com.catware.doffinslackbot.service.DoffinParser;
 import com.catware.doffinslackbot.service.SlackService;

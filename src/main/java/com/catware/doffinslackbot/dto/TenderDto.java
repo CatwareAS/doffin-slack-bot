@@ -1,4 +1,4 @@
-package com.catware.doffinslackbot;
+package com.catware.doffinslackbot.dto;
 
 import java.util.Objects;
 

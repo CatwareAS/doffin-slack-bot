@@ -1,6 +1,6 @@
 package com.catware.doffinslackbot.dao;
 
-import com.catware.doffinslackbot.TenderDto;
+import com.catware.doffinslackbot.dto.TenderDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
