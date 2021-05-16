@@ -16,15 +16,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class DoffinParser {
+public class InputService {
 
     private static final String TENDERS_LIST_SELECTOR = "div.notice-search-item";
     private static final String TENDER_LEFT_COL_SELECTOR = "div.notice-search-item-header>a";
     private static final String TENDER_RIGHT_COL_SELECTOR = "div.right-col>div";
 
-    Logger log = LoggerFactory.getLogger(DoffinParser.class);
+    Logger log = LoggerFactory.getLogger(InputService.class);
 
-    public List<TenderDto> parseUrl(URL url) throws IOException {
+    public List<TenderDto> fetchLastTenders(URL url) throws IOException {
         Document doc = Jsoup.parse(url, 1000 * 30);
         var tendersElements = doc.select(TENDERS_LIST_SELECTOR);
         return parseTenders(tendersElements);
@@ -42,7 +42,7 @@ public class DoffinParser {
         try {
             tenderDto = new TenderDto(
                     parseName(te),
-                    parseUrl(te),
+                    fetchLastTenders(te),
                     parsePublishedBy(te),
                     parsePublishedDate(te),
                     parseExpiresDate(te),
@@ -60,7 +60,7 @@ public class DoffinParser {
         return tenderName;
     }
 
-    private String parseUrl(Element te) {
+    private String fetchLastTenders(Element te) {
         return "https://doffin.no" + te.select(TENDER_LEFT_COL_SELECTOR).last().attr("href");
     }
 

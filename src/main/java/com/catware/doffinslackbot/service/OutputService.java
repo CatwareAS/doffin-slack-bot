@@ -17,7 +17,7 @@ import static com.slack.api.model.block.composition.BlockCompositions.markdownTe
 import static com.slack.api.webhook.WebhookPayloads.payload;
 
 @Service
-public class SlackService {
+public class OutputService {
 
     @Value("${app.slack.channel.url}")
     private String channelUrl;

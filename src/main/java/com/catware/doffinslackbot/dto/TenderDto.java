@@ -1,13 +1,18 @@
 package com.catware.doffinslackbot.dto;
 
+import com.google.cloud.firestore.annotation.DocumentId;
+import com.google.cloud.spring.data.firestore.Document;
+
 import java.util.Objects;
 
+@Document(collectionName = "tenders")
 public class TenderDto {
     private String name;
     private String url;
     private String publishedBy;
     private String publishedDate;
     private String expiresDate;
+    @DocumentId
     private String doffinReference;
 
     public TenderDto() {
