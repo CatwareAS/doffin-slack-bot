@@ -49,15 +49,13 @@ public class InputService {
                     parseDoffinReference(te)
             );
         } catch (Exception e) {
-            log.error("Error while parsing tender. ", e);
+            log.error("Error while parsing tender {} ", te, e);
         }
         return tenderDto;
     }
 
     private String parseName(Element te) {
-        String tenderName = te.select(TENDER_LEFT_COL_SELECTOR).last().text();
-        log.info("Parsing tender: {}", tenderName);
-        return tenderName;
+        return te.select(TENDER_LEFT_COL_SELECTOR).last().text();
     }
 
     private String fetchLastTenders(Element te) {

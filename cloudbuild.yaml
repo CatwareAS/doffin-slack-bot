@@ -1,0 +1,6 @@
+steps:
+  - name: maven:3.6.0-jdk-11-slim
+    entrypoint: 'mvn'
+    args: [ 'clean',  'install', 'spring-boot:build-image', '-Dspring-boot.build-image.imageName=gcr.io/${PROJECT_ID}/${PROJECT_ID}-image' ]
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', 'gcr.io/${PROJECT_ID}/${PROJECT_ID}-image']

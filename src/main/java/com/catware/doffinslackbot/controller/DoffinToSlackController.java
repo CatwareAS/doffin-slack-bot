@@ -42,10 +42,8 @@ public class DoffinToSlackController {
         log.info("Started fetchResultsAndPublishToSlack");
         log.info("Fetching data from Doffin, url: {}", doffinUrl);
         List<TenderDto> tendersFromDoffin = inputService.fetchLastTenders(new URL(doffinUrl));
-        tendersFromDoffin.stream().map(TenderDto::toString).forEach(log::info);
         log.info("Finding new tenders since last time and storing them in Firestore");
         List<TenderDto> newTendersSinceLastCheck = persistenceService.filterNewTendersUpdateExisting(tendersFromDoffin);
-        newTendersSinceLastCheck.stream().map(TenderDto::toString).forEach(log::info);
         if (newTendersSinceLastCheck.isEmpty()) {
             log.info("No changes since last run, nothing to publish in Slack");
         } else {
