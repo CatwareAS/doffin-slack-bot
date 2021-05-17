@@ -1,6 +1,14 @@
 steps:
+  # Build project and the container image
   - name: maven:3.6.0-jdk-11-slim
     entrypoint: 'mvn'
     args: [ 'clean',  'install', 'spring-boot:build-image', '-Dspring-boot.build-image.imageName=gcr.io/${PROJECT_ID}/${PROJECT_ID}-image' ]
+    # Push the container image to Container Registry
   - name: gcr.io/cloud-builders/docker
     args: ['push', 'gcr.io/${PROJECT_ID}/${PROJECT_ID}-image']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', '${PROJECT_ID}-cloud-run', '--image', 'gcr.io/${PROJECT_ID}/${PROJECT_ID}-image', '--region', 'us-central1', '--platform', 'managed']
+images:
+  - gcr.io/${PROJECT_ID}/${PROJECT_ID}-image
